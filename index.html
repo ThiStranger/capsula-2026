@@ -963,47 +963,7 @@ function runTW(){
   },50);
 }
 
-// AUTOPILOT
-var autoPilot=false;
-var autoSteps=[];
-var autoIdx=0;
-var autoTimer=null;
 
-function buildAutoSteps(){
-  var sections=['#statement','#world','#loves','#mapa','#timeline','#carta','#letters','#musica','#fotos','#responde'];
-  autoSteps=[];
-  sections.forEach(function(s,i){autoSteps.push({type:'scroll',target:s,delay:i===0?2000:6000});});
-  // open all letters during letters step
-  autoSteps.push({type:'openLetters',delay:1000});
-  // play first song during music step
-  autoSteps.push({type:'playMusic',trackIdx:0,delay:1000});
-  // start slideshow during photos step
-  autoSteps.push({type:'slideshow',delay:2000});
-}
-
-function runAutoPilot(){
-  if(!autoPilot||autoIdx>=autoSteps.length)return;
-  var step=autoSteps[autoIdx];
-  autoIdx++;
-  autoTimer=setTimeout(function(){
-    if(step.type==='scroll'&&step.target){
-      var el=document.querySelector(step.target);
-      if(el)el.scrollIntoView({behavior:'smooth'});
-    } else if(step.type==='openLetters'){
-      document.querySelectorAll('.letter').forEach(function(l){
-        var body=l.querySelector('.letter-body');
-        var btn=l.querySelector('.letter-toggle');
-        if(body&&!body.classList.contains('open')){body.classList.add('open');if(btn)btn.textContent='cerrar ↑';}
-      });
-    } else if(step.type==='playMusic'){
-      playTrack(step.trackIdx||0);
-    } else if(step.type==='slideshow'){
-      startSS(0);
-      setTimeout(function(){if(!ssAuto)toggleAuto();},500);
-    }
-    runAutoPilot();
-  },step.delay);
-}
 
 function openCapsule(){
   document.getElementById('tw-scene').style.display='none';
@@ -1013,10 +973,7 @@ function openCapsule(){
   setInterval(updateLC,1000);updateLC();
   setTimeout(function(){document.getElementById('nav').classList.add('on');},2500);
   loadResp();
-  // Start autopilot
-  autoPilot=true;
-  buildAutoSteps();
-  runAutoPilot();
+
 }
 
 // AUDIO
