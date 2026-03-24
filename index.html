@@ -289,6 +289,50 @@ canvas.stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
 .particle{position:fixed;pointer-events:none;z-index:460;border-radius:50%;animation:pFly var(--dur) ease-out forwards;}
 @keyframes pFly{0%{transform:translate(0,0) scale(1);opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0;}}
 
+/* FINALE */
+#finale{position:fixed;inset:0;background:var(--black);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;}
+#finale.on{display:flex;}
+.fn-stars-bg{position:absolute;inset:0;pointer-events:none;}
+.fn-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,0);pointer-events:none;transition:border-color .5s,width .5s,height .5s;}
+.fn-r1{width:min(90vw,500px);height:min(90vw,500px);}
+.fn-r2{width:min(75vw,410px);height:min(75vw,410px);}
+.fn-r3{width:min(60vw,320px);height:min(60vw,320px);}
+#finale.phase2 .fn-r1{border-color:rgba(201,168,76,.2);animation:rp .8s ease-in-out infinite;}
+#finale.phase2 .fn-r2{border-color:rgba(201,168,76,.12);animation:rp .8s ease-in-out infinite;animation-delay:.15s;}
+#finale.phase2 .fn-r3{border-color:rgba(201,168,76,.06);animation:rp .8s ease-in-out infinite;animation-delay:.3s;}
+#finale.phase3 .fn-r1{border-color:rgba(201,168,76,.55);animation:rp .35s ease-in-out infinite;width:min(98vw,560px);height:min(98vw,560px);}
+#finale.phase3 .fn-r2{border-color:rgba(201,168,76,.35);animation:rp .35s ease-in-out infinite;animation-delay:.08s;}
+#finale.phase3 .fn-r3{border-color:rgba(201,168,76,.18);animation:rp .35s ease-in-out infinite;animation-delay:.16s;}
+@keyframes rp{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.07);opacity:1}}
+.fn-eye{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.45em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;position:relative;z-index:2;transition:color .3s,letter-spacing .3s;opacity:0;animation:fu 1s ease .3s forwards;}
+#finale.phase3 .fn-eye{color:var(--gold2);letter-spacing:.65em;animation:eyeFlash .3s step-end infinite;}
+@keyframes eyeFlash{0%,100%{opacity:1}50%{opacity:.15}}
+.fn-nums{display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;position:relative;z-index:2;opacity:0;animation:fu .8s ease .5s forwards;}
+.fn-unit{text-align:center;}
+.fn-d{font-family:'Playfair Display',serif;font-size:clamp(5rem,20vw,13rem);font-weight:400;line-height:.88;color:var(--white);display:block;min-width:2ch;text-align:center;transition:color .4s;}
+#finale.phase2 .fn-d{color:var(--gold2);}
+#finale.phase3 .fn-d{animation:numPanic .15s ease-in-out infinite alternate;}
+@keyframes numPanic{0%{transform:scale(1);color:#fff;text-shadow:0 0 0 transparent}100%{transform:scale(1.09);color:var(--gold2);text-shadow:0 0 40px rgba(232,201,106,.6)}}
+.fn-sep{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,12vw,8rem);color:rgba(201,168,76,.35);line-height:.88;align-self:flex-start;margin-top:.35rem;transition:color .3s;}
+#finale.phase2 .fn-sep{color:rgba(232,201,106,.55);}
+#finale.phase3 .fn-sep{color:rgba(232,201,106,.9);animation:sepBlink .2s step-end infinite;}
+@keyframes sepBlink{0%,100%{opacity:1}50%{opacity:0}}
+.fn-lbl{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.3em;color:rgba(201,168,76,.4);text-transform:uppercase;margin-top:.5rem;}
+.fn-msg{font-family:'Playfair Display',serif;font-size:clamp(.9rem,2.2vw,1.3rem);font-style:italic;color:var(--gray);text-align:center;max-width:520px;padding:0 2rem;line-height:1.8;position:relative;z-index:2;margin-bottom:1.5rem;transition:color .5s;opacity:0;animation:fu .8s ease .7s forwards;}
+.fn-msg em{color:var(--gold2);}
+#finale.phase2 .fn-msg{color:#888780;}
+#finale.phase3 .fn-msg{color:var(--gold);}
+.fn-bar{width:min(280px,60vw);height:2px;background:rgba(201,168,76,.1);border-radius:1px;overflow:hidden;position:relative;z-index:2;opacity:0;animation:fu .8s ease .9s forwards;}
+.fn-bar-f{height:100%;background:var(--gold);width:100%;transition:width 1s linear;}
+#finale.phase3 .fn-bar-f{background:var(--gold2);}
+.fn-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:470;}
+.particle{position:fixed;border-radius:50%;pointer-events:none;z-index:465;animation:pFly var(--dur) ease-out forwards;}
+@keyframes pFly{0%{transform:translate(0,0) scale(1);opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0;}}
+.fn-open{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:468;text-align:center;padding:2rem;background:var(--black);}
+.fn-open.show{display:flex;}
+.fn-open-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,12vw,8rem);font-style:italic;color:var(--white);line-height:.9;margin-bottom:1.5rem;opacity:0;animation:fu 1.4s ease .4s forwards;}
+.fn-open-title em{color:var(--gold2);}
+.fn-open-sub{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.35em;color:rgba(201,168,76,.5);opacity:0;animation:fu 1s ease 1.2s forwards;}
 </style>
 </head>
 <body>
@@ -326,18 +370,25 @@ canvas.stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
 <!-- TYPEWRITER -->
 
 <!-- FINALE -->
+<!-- FINALE -->
 <div id="finale">
-  <canvas class="fn-stars" id="fn-stars-c"></canvas>
-  <div class="fn-ring"></div>
-  <div class="fn-ring2"></div>
+  <canvas class="fn-stars-bg" id="fn-stars-c"></canvas>
+  <div class="fn-ring fn-r1"></div>
+  <div class="fn-ring fn-r2"></div>
+  <div class="fn-ring fn-r3"></div>
   <div class="fn-eye" id="fn-eye">Abriendo en</div>
   <div class="fn-nums">
     <div class="fn-unit"><span class="fn-d" id="fn-m">01</span><div class="fn-lbl">min</div></div>
-    <div class="fn-sep">:</div>
+    <div class="fn-sep" id="fn-sep">:</div>
     <div class="fn-unit"><span class="fn-d" id="fn-s">00</span><div class="fn-lbl">seg</div></div>
   </div>
-  <div class="fn-msg" id="fn-msg"><em>15 de septiembre de 2037 · 10:00 PM</em><br>Tu 40 cumpleaños. Esta noche, todo se abre.</div>
-  <div class="fn-bar"><div class="fn-bar-fill" id="fn-bar-fill" style="width:100%"></div></div>
+  <div class="fn-msg"><em>15 de septiembre de 2037 · 10:00 PM</em><br>Tu 40 cumpleaños. Esta noche, todo se abre.</div>
+  <div class="fn-bar"><div class="fn-bar-f" id="fn-bar-f"></div></div>
+</div>
+<div class="fn-flash" id="fn-flash"></div>
+<div class="fn-open" id="fn-open">
+  <div class="fn-open-title">Hola,<br><em>Rikelvis.</em></div>
+  <div class="fn-open-sub">La cápsula ha sido abierta · 15 · 09 · 2037</div>
 </div>
 
 <div id="tw-scene"><div class="tw-txt" id="tw-txt"><span class="tw-c"></span></div></div>
@@ -857,29 +908,32 @@ function triggerFinale(secsLeft){
 
 function runFinaleCountdown(startSecs){
   var remaining=startSecs>0?startSecs:60;
-  var barFill=document.getElementById('fn-bar-fill');
+  var barFill=document.getElementById('fn-bar-f');
+  var fin=document.getElementById('finale');
+  initFinaleStars();
 
   function renderFinale(){
     var m=Math.floor(remaining/60);
     var s=remaining%60;
     var mEl=document.getElementById('fn-m');
     var sEl=document.getElementById('fn-s');
-    var newM=String(m).padStart(2,'0');
-    var newS=String(s).padStart(2,'0');
-    if(mEl.textContent!==newM){mEl.textContent=newM;mEl.classList.remove('tick');void mEl.offsetWidth;mEl.classList.add('tick');}
-    if(sEl.textContent!==newS){sEl.textContent=newS;sEl.classList.remove('tick');void sEl.offsetWidth;sEl.classList.add('tick');}
-    // Bar shrinks
-    var pct=(remaining/startSecs)*100;
-    barFill.style.width=pct+'%';
-    // Last 10 seconds
-    if(remaining<=10){
-      document.getElementById('finale').classList.add('last10');
-      document.getElementById('fn-eye').textContent=remaining<=5?'¡ABRIENDO!':'Casi...';
+    mEl.textContent=String(m).padStart(2,'0');
+    sEl.textContent=String(s).padStart(2,'0');
+    if(barFill){
+      var pct=(remaining/startSecs)*100;
+      barFill.style.width=pct+'%';
+      barFill.style.transition='width 1s linear';
+    }
+    if(remaining<=3 && remaining>0){
+      fin.classList.remove('phase2');fin.classList.add('phase3');
+      document.getElementById('fn-eye').textContent=remaining===3?'FALTAN 3...':remaining===2?'FALTAN 2...':'AHORA...';
+    } else if(remaining<=10){
+      fin.classList.remove('phase3');fin.classList.add('phase2');
+      document.getElementById('fn-eye').textContent='Casi...';
     }
     if(remaining<=0){
       clearInterval(finaleInt);
-      explodeParticles();
-      setTimeout(startOpening,1200);
+      triggerOpenEffect();
       return;
     }
     remaining--;
@@ -888,22 +942,88 @@ function runFinaleCountdown(startSecs){
   finaleInt=setInterval(renderFinale,1000);
 }
 
-function explodeParticles(){
-  var colors=['#e8c96a','#c9a84c','#f0ece4','#ffffff'];
-  var cx=window.innerWidth/2, cy=window.innerHeight/2;
-  for(var i=0;i<120;i++){
-    var p=document.createElement('div');
-    p.className='particle';
-    var size=Math.random()*6+2;
-    var angle=Math.random()*Math.PI*2;
-    var dist=Math.random()*window.innerHeight*.8+100;
-    var tx=Math.cos(angle)*dist;
-    var ty=Math.sin(angle)*dist;
-    var dur=(Math.random()*.8+.6)+'s';
-    p.style.cssText='width:'+size+'px;height:'+size+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';left:'+cx+'px;top:'+cy+'px;--tx:'+tx+'px;--ty:'+ty+'px;--dur:'+dur+';';
-    document.body.appendChild(p);
-    setTimeout(function(el){el.remove();},1500,p);
+function initFinaleStars(){
+  var c=document.getElementById('fn-stars-c');if(!c)return;
+  var ctx=c.getContext('2d');
+  var stars=[];
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();
+  for(var i=0;i<140;i++)stars.push({x:Math.random(),y:Math.random(),r:Math.random()*1.3+.2,o:Math.random()*.5+.1,sp:Math.random()*.002+.001,ph:Math.random()*Math.PI*2});
+  var phase3=false;
+  document.getElementById('finale').addEventListener('classChange',function(){phase3=document.getElementById('finale').classList.contains('phase3');});
+  function draw(t){
+    if(!document.getElementById('finale').classList.contains('on'))return;
+    var p3=document.getElementById('finale').classList.contains('phase3');
+    var intensity=p3?2.2:document.getElementById('finale').classList.contains('phase2')?1.5:1;
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(function(s){
+      var op=Math.min(s.o*intensity*(.4+.6*Math.sin(t*s.sp*1000+s.ph)),1);
+      ctx.beginPath();ctx.arc(s.x*c.width,s.y*c.height,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(232,201,106,'+op+')';ctx.fill();
+    });
+    requestAnimationFrame(draw);
   }
+  requestAnimationFrame(draw);
+}
+
+function triggerOpenEffect(){
+  // Flash
+  var flash=document.getElementById('fn-flash');
+  flash.style.transition='none';flash.style.opacity='1';
+  setTimeout(function(){flash.style.transition='opacity 1.8s ease';flash.style.opacity='0';},80);
+  // Particles wave 1
+  explodeWave(120, 0, window.innerWidth/2, window.innerHeight/2, 320, .6, .5);
+  // Wave 2 delayed
+  setTimeout(function(){explodeWave(70, 0, window.innerWidth/2, window.innerHeight/2, 420, .8, .7);},200);
+  // Golden rain from top
+  setTimeout(function(){
+    var colors=['#e8c96a','#c9a84c','#fff8e1'];
+    for(var i=0;i<50;i++){
+      (function(delay){
+        setTimeout(function(){
+          var p=document.createElement('div');
+          p.className='particle';
+          var size=Math.random()*3+1;
+          var sx=Math.random()*window.innerWidth;
+          var tx=(Math.random()-.5)*100;
+          var ty=Math.random()*220+120;
+          var dur=(Math.random()*.6+.9)+'s';
+          p.style.cssText='width:'+size+'px;height:'+size+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';border-radius:0;left:'+sx+'px;top:0px;--tx:'+tx+'px;--ty:'+ty+'px;--dur:'+dur+';';
+          document.body.appendChild(p);
+          setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p);},2000);
+        },delay);
+      })(Math.random()*700);
+    }
+  },150);
+  // Show open screen
+  setTimeout(function(){
+    document.getElementById('finale').classList.remove('on');
+    document.getElementById('fn-flash').style.opacity='0';
+    document.getElementById('fn-open').classList.add('show');
+    setTimeout(function(){
+      document.getElementById('fn-open').classList.remove('show');
+      document.getElementById('fn-open').style.display='none';
+      runTW();
+    },4000);
+  },500);
+}
+
+function explodeWave(count, delay, cx, cy, maxDist, durMin, durExtra){
+  var colors=['#e8c96a','#c9a84c','#f0ece4','#ffffff','#b8933a','#fff8e1'];
+  setTimeout(function(){
+    for(var i=0;i<count;i++){
+      var p=document.createElement('div');
+      p.className='particle';
+      var size=Math.random()*7+2;
+      var angle=Math.random()*Math.PI*2;
+      var dist=Math.random()*maxDist+80;
+      var tx=Math.cos(angle)*dist,ty=Math.sin(angle)*dist;
+      var dur=(Math.random()*durExtra+durMin)+'s';
+      p.style.cssText='width:'+size+'px;height:'+size+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';left:'+cx+'px;top:'+cy+'px;--tx:'+tx+'px;--ty:'+ty+'px;--dur:'+dur+';';
+      document.body.appendChild(p);
+      setTimeout(function(el){if(el.parentNode)el.parentNode.removeChild(el);},1800,p);
+    }
+  },delay);
 }
 
 // LIVE COUNTER
